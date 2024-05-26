@@ -28,16 +28,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     button.addEventListener("click", function() {
         overlay.style.display = "block"; 
-
-        const exitButton = document.createElement("button");
-        exitButton.textContent = "x";
-        const exitContainer = document.createElement("button-container");
-        exitContainer.appendChild(exitButton);
-        overlay.appendChild(exitContainer); 
-    
-        exitButton.addEventListener("click", function(){
-            overlay.style.display = "none";
-        });
+        
+        let exitButton = document.getElementById("exit-button");
+        if (!exitButton) {
+            const exitButton = document.createElement("button");
+            exitButton.textContent = "x";
+            exitButton.id = "exit-button"; // Set an id for easier retrieval
+            overlay.appendChild(exitButton); 
+        
+            exitButton.addEventListener("click", function(){
+                overlay.style.display = "none";
+            });
+        }
     });
 
     
