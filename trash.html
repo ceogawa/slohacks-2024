@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waste Sorting Game</title>
+    <style>
+        /* CSS styles for the score and hearts */
+        #score-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 18px;
+            color: black;
+            font-family: Arial, sans-serif;
+        }
+        #hearts {
+            display: flex;
+            margin-top: 10px;
+        }
+        .heart {
+            width: 30px;
+            height: auto;
+            margin-left: 5px;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        #game {
+            position: relative;
+            width: 60%;
+            height: 80%;
+            border: 2px solid #333;
+            overflow: hidden;
+        }
+        .bin {
+            position: absolute;
+            bottom: 0;
+            /* height: 50px;  */
+        }
+        .bin img {
+            width: 80%; 
+            height: 80%;
+            display: block;
+            margin: 0 auto;
+        }
+        #trash-bin { left: 50px; }
+        #recycling-bin { left: 300px; }
+        #compost-bin { left: 500px; }
+        .waste {
+            position: absolute;
+            cursor: grab;
+        }
+    </style>
+</head>
+<body>
+    <div id="game">
+        <div id="trash-bin" class="bin"><img src="landfill.png" alt="Trash Bin"></div>
+        <div id="recycling-bin" class="bin"><img src="recycle.png" alt="Recycling Bin"></div>
+        <div id="compost-bin" class="bin"><img src="compost.png" alt="Compost Bin"></div>
+        <div id="score-container">
+            Score: <span id="score-value">0</span>
+            <div id="hearts">
+                <img src="heart.jpg" class="heart" alt="Heart">
+                <img src="heart.jpg" class="heart" alt="Heart">
+                <img src="heart.jpg" class="heart" alt="Heart">
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
