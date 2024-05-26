@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let waste;
 
     //making heart generation rare
-    if (Math.random() < 0.05) {
+    if (Math.random() < 0.1) {
       //5% chance
       waste = wasteTypes.find((w) => w.type === "heart");
     } else {
@@ -96,15 +96,18 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function moveWaste(element) {
-    const speed = 2; // pixels per interval
     function fall() {
+      const baseSpeed = 2; // Base speed in pixels per interval
+      const speedMultiplier = Math.floor(score / 10) + 1; // Multiplier increases every 10 points
+      const speed = baseSpeed * speedMultiplier; // Calculate current speed
+
       if (!element.parentNode) return; // Stop the interval if the element is removed
       element.style.top = `${element.offsetTop + speed}px`;
 
       if (element.offsetTop + element.offsetHeight >= game.offsetHeight) {
         game.removeChild(element);
         if (element.dataset.type !== "heart") {
-          loseLife(); // Call loseLife() if non-heart waste reaches the bottom
+          loseLife();
         }
       } else {
         requestAnimationFrame(fall);
@@ -122,6 +125,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (lives > 0) {
       lives--;
       hearts[lives].style.display = "none";
+      // Get the game elelment and flash it red
+      const gameElement = document.getElementById("game");
+      flashRed(gameElement);
       if (lives === 0) {
         endGame(); // Call endGame() if lives reach zero
       }
@@ -164,6 +170,17 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
     }, 5000); // Adjust the timeout as needed
+  }
+
+  function flashRed(element) {
+    const originalColor = "rgb(142, 175, 204)"; // Original background color
+    element.style.transition = "background-color 0.5s"; // Add transition for smooth effect
+    element.style.backgroundColor = "red"; // Change to red
+
+    // Change back to original color after a short delay (e.g., 500ms)
+    setTimeout(() => {
+      element.style.backgroundColor = originalColor;
+    }, 500);
   }
 
   function endGame() {
