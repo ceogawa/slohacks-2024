@@ -9,12 +9,19 @@ document.addEventListener('DOMContentLoaded', () => {
     let score = 0;
     const scoreElement = document.getElementById('score-value');
     const hearts = document.querySelectorAll('.heart');
+    const button = document.createElement("button");
     let lives = hearts.length;
     let gameInterval;
 
     const binWidth = bins['trash-bin'].offsetWidth;
     const gameWidth = game.offsetWidth;
     const moveSpeed = 10;
+
+    button.textContent = "Help";
+    button.addEventListener("click", function() {
+        alert("Button was clicked!");
+    });
+    document.getElementById("button-container").appendChild(button);
 
     // Handle keyboard events
     document.addEventListener('keydown', (event) => {
