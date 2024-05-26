@@ -71,11 +71,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function moveWaste(element) {
-        const speed = 2; // pixels per interval
         function fall() {
+            const baseSpeed = 2; // Base speed in pixels per interval
+            const speedMultiplier = Math.floor(score / 10) + 1; // Multiplier increases every 10 points
+            const speed = baseSpeed * speedMultiplier; // Calculate current speed
+    
             if (!element.parentNode) return; // Stop the interval if the element is removed
             element.style.top = `${element.offsetTop + speed}px`;
-
+    
             if (element.offsetTop + element.offsetHeight >= game.offsetHeight) {
                 game.removeChild(element);
                 loseLife(); // Call loseLife() if waste reaches the bottom
