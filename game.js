@@ -83,17 +83,17 @@ button.addEventListener("click", function() {
   });
 
   const wasteTypes = [
-    { type: "trash", image: "chips.png", width: "61px", height: "79.5px" },
-    { type: "recycling", image: "bottle.png", width: "36px", height: "92.5px" },
-    { type: "recycling", image: "glass.png", width: "26x", height: "92.5px" },
-    { type: "compost", image: "egg.png", width: "37px", height: "54.5px" },
+    { type: "trash", image: "resources/chips.png", width: "61px", height: "79.5px" },
+    { type: "recycling", image: "resources/bottle.png", width: "36px", height: "92.5px" },
+    { type: "recycling", image: "resources/glass.png", width: "26x", height: "92.5px" },
+    { type: "compost", image: "resources/egg.png", width: "37px", height: "54.5px" },
     {
       type: "compost",
-      image: "banana.png",
+      image: "resources/banana.png",
       width: "85.125px",
       height: "52.125px",
     },
-    { type: "heart", image: "heart.png", width: "50px", height: "50px" },
+    { type: "heart", image: "resources/heart.png", width: "50px", height: "50px" },
   ];
 
   function createWaste() {
