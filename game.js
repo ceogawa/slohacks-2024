@@ -237,12 +237,18 @@ button.addEventListener("click", function() {
     }, 500);
   }
 
-  function endGame() {
-    clearInterval(gameInterval); // Stop creating new waste
-    document.removeEventListener("keydown", handleKeydown); // Disable keyboard inputs
-    alert("Game Over!, WASTED!!");
-    location.reload(); // Reload the page to restart the game
-  }
+//   function endGame() {
+//     clearInterval(gameInterval); // Stop creating new waste
+//     document.removeEventListener("keydown", handleKeydown); // Disable keyboard inputs
+//     alert("Game Over!, WASTED!!");
+//     location.reload(); // Reload the page to restart the game
+//   }
+    function endGame() {
+        clearInterval(gameInterval); 
+        document.removeEventListener("keydown", handleKeydown); 
+        var gameOverOverlay = document.getElementById("gameOverOverlay");
+        gameOverOverlay.style.display = "block";
+    }
 
   function handleKeydown(event) {
     if (event.key === "ArrowLeft") {
