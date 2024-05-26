@@ -9,48 +9,43 @@ document.addEventListener("DOMContentLoaded", () => {
   let score = 0;
   let streak = 0;
   const scoreElement = document.getElementById("score-value");
-  const streakElement = document.getElementById('streak-value');
+  const streakElement = document.getElementById("streak-value");
   const hearts = document.querySelectorAll(".heart");
   let lives = hearts.length;
   let gameInterval;
 
-   
-    const binWidth = bins['trash-bin'].offsetWidth;
-    const gameWidth = game.offsetWidth;
-    const moveSpeed = 10;
+  const binWidth = bins["trash-bin"].offsetWidth;
+  const gameWidth = game.offsetWidth;
+  const moveSpeed = 10;
 
   var overlay = document.getElementById("myOverlay");
-    
-// Creating the button
-const buttonContainer = document.getElementById("button-container");
-const button = document.createElement("button");
-button.textContent = "Tutorial"; // Set the button text
-// button.classList.add("styled-button"); // Add the class for styling
-buttonContainer.appendChild(button); // Append button to container
 
-button.addEventListener("click", function() {
-    
-    overlay.style.display = "block"; 
-    
+  // Creating the button
+  const buttonContainer = document.getElementById("button-container");
+  const button = document.createElement("button");
+  button.textContent = "Tutorial";
+  buttonContainer.appendChild(button);
+
+  button.addEventListener("click", function () {
+    overlay.style.display = "block";
+
     let exitButton = document.getElementById("exit-button");
     if (!exitButton) {
-        const exitButton = document.createElement("button");
-        exitButton.textContent = "x";
-        exitButton.id = "exit-button"; // Set an id for easier retrieval
-        overlay.appendChild(exitButton); 
+      const exitButton = document.createElement("button");
+      exitButton.textContent = "x";
+      exitButton.id = "exit-button";
+      overlay.appendChild(exitButton);
 
-        exitButton.style.position = "absolute";
-        exitButton.style.top = "40px"; // Adjust this value as needed
-        exitButton.style.right = "40px"; // Adjust this value as needed
-        exitButton.style.scale = 2;
+      exitButton.style.position = "absolute";
+      exitButton.style.top = "40px";
+      exitButton.style.right = "40px";
+      exitButton.style.scale = 2;
 
-        exitButton.addEventListener("click", function(){
-            overlay.style.display = "none";
-        });
+      exitButton.addEventListener("click", function () {
+        overlay.style.display = "none";
+      });
     }
-
-    });
-
+  });
 
   // Handle keyboard events
   document.addEventListener("keydown", (event) => {
@@ -83,24 +78,49 @@ button.addEventListener("click", function() {
   });
 
   const wasteTypes = [
-    { type: "trash", image: "resources/chips.png", width: "61px", height: "79.5px" },
-    { type: "recycling", image: "resources/bottle.png", width: "36px", height: "92.5px" },
-    { type: "recycling", image: "resources/glass.png", width: "26x", height: "92.5px" },
-    { type: "compost", image: "resources/egg.png", width: "37px", height: "54.5px" },
+    {
+      type: "trash",
+      image: "resources/chips.png",
+      width: "61px",
+      height: "79.5px",
+    },
+    {
+      type: "recycling",
+      image: "resources/bottle.png",
+      width: "36px",
+      height: "92.5px",
+    },
+    {
+      type: "recycling",
+      image: "resources/glass.png",
+      width: "26x",
+      height: "92.5px",
+    },
+    {
+      type: "compost",
+      image: "resources/egg.png",
+      width: "37px",
+      height: "54.5px",
+    },
     {
       type: "compost",
       image: "resources/banana.png",
       width: "85.125px",
       height: "52.125px",
     },
-    { type: "heart", image: "resources/heart.png", width: "50px", height: "50px" },
+    {
+      type: "heart",
+      image: "resources/heart.png",
+      width: "50px",
+      height: "50px",
+    },
   ];
 
   function createWaste() {
     let waste;
 
     //making heart generation rare
-    if (Math.random() < 0.1) {
+    if (Math.random() < 0.05) {
       //5% chance
       waste = wasteTypes.find((w) => w.type === "heart");
     } else {
@@ -152,41 +172,40 @@ button.addEventListener("click", function() {
     requestAnimationFrame(fall);
   }
 
-    function increaseScore() {
-        score++;
-        scoreElement.textContent = score; // Update the score text content
-        streak++;
-        streakElement.textContent = streak; // Steak update
-    }
+  function increaseScore() {
+    score++;
+    scoreElement.textContent = score; // Update the score text content
+    streak++;
+    streakElement.textContent = streak; // Steak update
+  }
 
-   
+  function flashRed(element) {
+    // flashes red on wrong input
+    const originalColor = "rgb(142, 175, 204)"; // Original background color
+    element.style.transition = "background-color 0.5s"; // Add transition for smooth effect
+    element.style.backgroundColor = "red"; // Change to red
 
-    function flashRed(element) {
-        const originalColor = 'rgb(142, 175, 204)'; // Original background color
-        element.style.transition = 'background-color 0.5s'; // Add transition for smooth effect
-        element.style.backgroundColor = 'red'; // Change to red
-    
-        // Change back to original color after a short delay (e.g., 500ms)
-        setTimeout(() => {
-            element.style.backgroundColor = originalColor;
-        }, 500);
-    }
+    // Change back to original color after a short delay (e.g., 500ms)
+    setTimeout(() => {
+      element.style.backgroundColor = originalColor;
+    }, 500);
+  }
 
   function loseLife() {
     if (lives > 0) {
-        lives--;
-        hearts[lives].style.display = 'none';
-        
-                    const gameElement = document.getElementById('game');
-            flashRed(gameElement);
-            
-        streak = 0; // Reset the streak to 0
-        streakElement.textContent = streak;
-        if (lives === 0) {
-            endGame(); // Call endGame() if lives reach zero
-        }
+      lives--;
+      hearts[lives].style.display = "none";
+
+      const gameElement = document.getElementById("game");
+      flashRed(gameElement);
+
+      streak = 0; // Reset the streak to 0
+      streakElement.textContent = streak;
+      if (lives === 0) {
+        endGame(); // Call endGame() if lives reach zero
+      }
     }
-}
+  }
 
   function closeToBinElement(element) {
     const intervalId = setInterval(() => {
@@ -237,18 +256,19 @@ button.addEventListener("click", function() {
     }, 500);
   }
 
-//   function endGame() {
-//     clearInterval(gameInterval); // Stop creating new waste
-//     document.removeEventListener("keydown", handleKeydown); // Disable keyboard inputs
-//     alert("Game Over!, WASTED!!");
-//     location.reload(); // Reload the page to restart the game
-//   }
-    function endGame() {
-        clearInterval(gameInterval); 
-        document.removeEventListener("keydown", handleKeydown); 
-        var gameOverOverlay = document.getElementById("gameOverOverlay");
-        gameOverOverlay.style.display = "block";
-    }
+  //   function endGame() {
+  //     clearInterval(gameInterval); // Stop creating new waste
+  //     document.removeEventListener("keydown", handleKeydown); // Disable keyboard inputs
+  //     alert("Game Over!, WASTED!!");
+  //     location.reload(); // Reload the page to restart the game
+  //   }
+  function endGame() {
+    // no more trash, no more key input
+    clearInterval(gameInterval);
+    document.removeEventListener("keydown", handleKeydown);
+    var gameOverOverlay = document.getElementById("gameOverOverlay");
+    gameOverOverlay.style.display = "block";
+  }
 
   function handleKeydown(event) {
     if (event.key === "ArrowLeft") {
