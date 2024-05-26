@@ -19,14 +19,28 @@ document.addEventListener('DOMContentLoaded', () => {
     // setup tutorial overlay
     var overlay = document.getElementById("myOverlay");
     
-       // Creating the button
+    // Creating the button
+    const buttonContainer = document.getElementById("button-container");
     const button = document.createElement("button");
     button.textContent = "Tutorial"; // Set the button text
-    // button.className = "styled-button"; // Add the class for styling
+    // button.classList.add("styled-button"); // Add the class for styling
+    buttonContainer.appendChild(button); // Append button to container
+
     button.addEventListener("click", function() {
-        overlay.style.display = "block"; // Show the overlay when clicked
+        overlay.style.display = "block"; 
+
+        const exitButton = document.createElement("button");
+        exitButton.textContent = "x";
+        const exitContainer = document.createElement("button-container");
+        exitContainer.appendChild(exitButton);
+        overlay.appendChild(exitContainer); 
+    
+        exitButton.addEventListener("click", function(){
+            overlay.style.display = "none";
+        });
     });
 
+    
 
     // Handle keyboard events
     document.addEventListener('keydown', (event) => {
