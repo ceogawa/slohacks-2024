@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Freeman&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Waste Sorting Game</title>
@@ -10,16 +13,9 @@
             position: fixed;
             top: 20px;
             right: 20px;
-            font-size: 18px;
+            font-size: 26px;
             color: black;
-            font-family: Arial, sans-serif;
-        }
-        #streaks {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            flex-direction: column;
+            font-family: "Freeman", sans-serif;
         }
         #hearts {
             display: flex;
@@ -29,6 +25,22 @@
             width: 30px;
             height: auto;
             margin-left: 5px;
+        }
+
+        #streak {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            font-size: 26px;
+            color: black;
+            font-family: "Freeman", sans-serif;
+            display: flex;
+            align-items: center;
+        }
+        #streak img {
+            width: 26px;
+            height: 26px;
+            margin-right: 5px;
         }
         body {
             display: flex;
@@ -73,11 +85,11 @@
         <div id="score-container">
             Score: <span id="score-value">0</span>
             <div id="hearts">
-                <img src="heart.jpg" class="heart" alt="Heart">
-                <img src="heart.jpg" class="heart" alt="Heart">
-                <img src="heart.jpg" class="heart" alt="Heart">
+                <img src="heart.png" class="heart" alt="Heart">
+                <img src="heart.png" class="heart" alt="Heart">
+                <img src="heart.png" class="heart" alt="Heart">
             </div>
-            <div id="streaks"></div>
+            <div id="streak"><img src="streak.png" alt="Streak Icon">Streak: <span id="streak-value">0</span></div>
         </div>
     </div>
 
