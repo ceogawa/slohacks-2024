@@ -55,7 +55,11 @@
             text-align: left;
             font-family: Arial, sans-serif;
         }
-
+        .overlay-gameover {
+            text-align: center;
+            font-size: 2em;
+            font-weight: bold;
+            color: rgb(0, 0, 0);
         #streak {
             position: fixed;
             top: 100px;
@@ -147,13 +151,25 @@
             <div class="overlay-content">
                     <!-- <div id="exit-button"></div> -->
                 <h2>EcoSort</h2>
-                <p>Welcome to EcoSort! Use your < and > keys to control the various bins to properly sort the falling trash.
+                <p>Welcome to EcoSort, the sustainability game
+                    where players have to sort trash on a time crunch! 
+                    Players learn the best recycling and trash-handling practices by using < and > keys
+                    to move bins to catch the appropriate trash item.</and>
+                    <div>HINTS: Click on the hearts to gain back lost lives</div>
                 <div>Landfill: chip bag </div> 
                 <div>Recycle: water bottle, glass bottle</div>
                 <div>Compost: egg shells, banana peel</div></and></p>
             </div>
         </div>
+        <div id="gameOverOverlay" class="overlay">
+            <div class="overlay-content" >
+                <div class="overlay-gameover">WASTED</div>
+                <p>Game Over! Refresh the page to restart.</p>
+            </div>
+        </div>
     </div>
+
+    <!--  -->
 
     <script src="game.js"></script>
 </body>
