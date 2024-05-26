@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
       width: "85.125px",
       height: "52.125px",
     },
-    { type: "heart", image: "heart.jpg", width: "50px", height: "50px" },
+    { type: "heart", image: "heart.png", width: "50px", height: "50px" },
   ];
 
   function createWaste() {
@@ -123,16 +123,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function loseLife() {
     if (lives > 0) {
-      lives--;
-      hearts[lives].style.display = "none";
-      // Get the game elelment and flash it red
-      const gameElement = document.getElementById("game");
-      flashRed(gameElement);
-      if (lives === 0) {
-        endGame(); // Call endGame() if lives reach zero
-      }
+        lives--;
+        hearts[lives].style.display = 'none';
+        
+        // Get the game element and flash it red
+        const gameElement = document.getElementById('game');
+        flashRed(gameElement);
+        
+        if (lives === 0) {
+            endGame(); // Call endGame() if lives reach zero
+        }
     }
-  }
+}
 
   function closeToBinElement(element) {
     const intervalId = setInterval(() => {
