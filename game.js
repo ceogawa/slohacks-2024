@@ -5,7 +5,19 @@ document.addEventListener("DOMContentLoaded", () => {
     "recycling-bin": document.getElementById("recycling-bin"),
     "compost-bin": document.getElementById("compost-bin"),
   };
+document.addEventListener("DOMContentLoaded", () => {
+  const game = document.getElementById("game");
+  const bins = {
+    "trash-bin": document.getElementById("trash-bin"),
+    "recycling-bin": document.getElementById("recycling-bin"),
+    "compost-bin": document.getElementById("compost-bin"),
+  };
 
+  let score = 0;
+  const scoreElement = document.getElementById("score-value");
+  const hearts = document.querySelectorAll(".heart");
+  let lives = hearts.length;
+  let gameInterval;
   let score = 0;
   const scoreElement = document.getElementById("score-value");
   const hearts = document.querySelectorAll(".heart");
@@ -49,15 +61,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
-    // Handle keyboard events
-    document.addEventListener('keydown', (event) => {
-        if (event.key === 'ArrowLeft') {
-            moveBins(-moveSpeed);
-        } else if (event.key === 'ArrowRight') {
-            moveBins(moveSpeed);
-        }
-    });
+  // Handle keyboard events
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowLeft") {
+      moveBins(-moveSpeed);
+    } else if (event.key === "ArrowRight") {
+      moveBins(moveSpeed);
+    }
+  });
 
+  function moveBins(offset) {
+    for (const binId in bins) {
+      const bin = bins[binId];
+      let left = bin.offsetLeft + offset;
+      // Wrap around the game area
+      if (left < -binWidth) {
+        left = gameWidth;
+      } else if (left > gameWidth) {
+        left = -binWidth;
+      }
+      bin.style.left = left + "px";
+    }
+  }
   function moveBins(offset) {
     for (const binId in bins) {
       const bin = bins[binId];
