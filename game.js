@@ -98,10 +98,25 @@ document.addEventListener('DOMContentLoaded', () => {
         scoreElement.textContent = score; // Update the score text content
     }
 
+    function flashRed(element) {
+        const originalColor = 'rgb(142, 175, 204)'; // Original background color
+        element.style.transition = 'background-color 0.5s'; // Add transition for smooth effect
+        element.style.backgroundColor = 'red'; // Change to red
+    
+        // Change back to original color after a short delay (e.g., 500ms)
+        setTimeout(() => {
+            element.style.backgroundColor = originalColor;
+        }, 500);
+    }
+
     function loseLife() {
         if (lives > 0) {
             lives--;
             hearts[lives].style.display = 'none';
+
+        // Get the game element and flash it red
+        const gameElement = document.getElementById('game');
+        flashRed(gameElement);
             if (lives === 0) {
                 endGame(); // Call endGame() if lives reach zero
             }
