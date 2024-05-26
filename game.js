@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     buttonContainer.appendChild(button); // Append button to container
 
     button.addEventListener("click", function() {
+        
         overlay.style.display = "block"; 
         
         let exitButton = document.getElementById("exit-button");
@@ -35,14 +36,18 @@ document.addEventListener('DOMContentLoaded', () => {
             exitButton.textContent = "x";
             exitButton.id = "exit-button"; // Set an id for easier retrieval
             overlay.appendChild(exitButton); 
-        
+
+            exitButton.style.position = "absolute";
+            exitButton.style.top = "40px"; // Adjust this value as needed
+            exitButton.style.right = "40px"; // Adjust this value as needed
+            exitButton.style.scale = 2;
+
             exitButton.addEventListener("click", function(){
                 overlay.style.display = "none";
             });
         }
-    });
 
-    
+    });
 
     // Handle keyboard events
     document.addEventListener('keydown', (event) => {
