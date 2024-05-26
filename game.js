@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let score = 0;
     const scoreElement = document.getElementById('score-value');
     const hearts = document.querySelectorAll('.heart');
-    const button = document.createElement("button");
     let lives = hearts.length;
     let gameInterval;
 
@@ -17,11 +16,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const gameWidth = game.offsetWidth;
     const moveSpeed = 10;
 
-    button.textContent = "Help";
+    // setup tutorial overlay
+    var overlay = document.getElementById("myOverlay");
+    
+       // Creating the button
+    const button = document.createElement("button");
+    button.textContent = "Tutorial"; // Set the button text
+    // button.className = "styled-button"; // Add the class for styling
     button.addEventListener("click", function() {
-        alert("Button was clicked!");
+        overlay.style.display = "block"; // Show the overlay when clicked
     });
-    document.getElementById("button-container").appendChild(button);
+
 
     // Handle keyboard events
     document.addEventListener('keydown', (event) => {
