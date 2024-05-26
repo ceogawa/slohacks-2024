@@ -7,11 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     let score = 0;
+    let streakCount = 0;
     const scoreElement = document.getElementById('score-value');
     const hearts = document.querySelectorAll('.heart');
     let lives = hearts.length;
     let gameInterval;
 
+    const streaksContainer = document.getElementById('streaks');
     const binWidth = bins['trash-bin'].offsetWidth;
     const gameWidth = game.offsetWidth;
     const moveSpeed = 10;
@@ -92,6 +94,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function increaseScore() {
         score++;
         scoreElement.textContent = score; // Update the score text content
+        if (score % 10 === 0) {
+            addStreak();
+        }
+    }
+
+    function addStreak() {
+        streakCount++;
+        const streakElement = document.createElement('img');
+        streakElement.src = 'streak.png'; 
+        streaksContainer.appendChild(streakElement);
     }
 
     function flashRed(element) {
@@ -109,10 +121,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (lives > 0) {
             lives--;
             hearts[lives].style.display = 'none';
-
-        // Get the game element and flash it red
-        const gameElement = document.getElementById('game');
-        flashRed(gameElement);
+            const gameElement = document.getElementById('game');
+            flashRed(gameElement);
             if (lives === 0) {
                 endGame(); // Call endGame() if lives reach zero
             }
