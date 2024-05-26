@@ -1,50 +1,50 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const game = document.getElementById("game");
-  const bins = {
+    const game = document.getElementById("game");
+    const bins = {
     "trash-bin": document.getElementById("trash-bin"),
     "recycling-bin": document.getElementById("recycling-bin"),
     "compost-bin": document.getElementById("compost-bin"),
-  };
+    };
 
-  let score = 0;
-  const scoreElement = document.getElementById("score-value");
-  const hearts = document.querySelectorAll(".heart");
-  let lives = hearts.length;
-  let gameInterval;
+    let score = 0;
+    const scoreElement = document.getElementById("score-value");
+    const hearts = document.querySelectorAll(".heart");
+    let lives = hearts.length;
+    let gameInterval;
 
-  const binWidth = bins["trash-bin"].offsetWidth;
-  const gameWidth = game.offsetWidth;
-  const moveSpeed = 10;
+    const binWidth = bins["trash-bin"].offsetWidth;
+    const gameWidth = game.offsetWidth;
+    const moveSpeed = 10;
 
-  var overlay = document.getElementById("myOverlay");
+    var overlay = document.getElementById("myOverlay");
     
-// Creating the button
-const buttonContainer = document.getElementById("button-container");
-const button = document.createElement("button");
-button.textContent = "Tutorial"; // Set the button text
-// button.classList.add("styled-button"); // Add the class for styling
-buttonContainer.appendChild(button); // Append button to container
+    // Creating the button
+    const buttonContainer = document.getElementById("button-container");
+    const button = document.createElement("button");
+    button.textContent = "Tutorial"; // Set the button text
+    // button.classList.add("styled-button"); // Add the class for styling
+    buttonContainer.appendChild(button); // Append button to container
 
-button.addEventListener("click", function() {
-    
-    overlay.style.display = "block"; 
-    
-    let exitButton = document.getElementById("exit-button");
-    if (!exitButton) {
-        const exitButton = document.createElement("button");
-        exitButton.textContent = "x";
-        exitButton.id = "exit-button"; // Set an id for easier retrieval
-        overlay.appendChild(exitButton); 
+    button.addEventListener("click", function() {
+        
+        overlay.style.display = "block"; 
+        
+        let exitButton = document.getElementById("exit-button");
+        if (!exitButton) {
+            const exitButton = document.createElement("button");
+            exitButton.textContent = "x";
+            exitButton.id = "exit-button"; // Set an id for easier retrieval
+            overlay.appendChild(exitButton); 
 
-        exitButton.style.position = "absolute";
-        exitButton.style.top = "40px"; // Adjust this value as needed
-        exitButton.style.right = "40px"; // Adjust this value as needed
-        exitButton.style.scale = 2;
+            exitButton.style.position = "absolute";
+            exitButton.style.top = "40px"; // Adjust this value as needed
+            exitButton.style.right = "40px"; // Adjust this value as needed
+            exitButton.style.scale = 2;
 
-        exitButton.addEventListener("click", function(){
-            overlay.style.display = "none";
-        });
-    }
+            exitButton.addEventListener("click", function(){
+                overlay.style.display = "none";
+            });
+        }
 
     });
 
@@ -96,8 +96,8 @@ button.addEventListener("click", function() {
     let waste;
 
     //making heart generation rare
-    if (Math.random() < 0.1) {
-      //5% chance
+    if (Math.random() < 0.06) {
+      //6% chance
       waste = wasteTypes.find((w) => w.type === "heart");
     } else {
       waste = wasteTypes[Math.floor(Math.random() * (wasteTypes.length - 1))]; // Avoid selecting the heart type
@@ -217,12 +217,24 @@ button.addEventListener("click", function() {
     }, 500);
   }
 
-  function endGame() {
-    clearInterval(gameInterval); // Stop creating new waste
-    document.removeEventListener("keydown", handleKeydown); // Disable keyboard inputs
-    alert("Game Over!, WASTED!!");
-    location.reload(); // Reload the page to restart the game
-  }
+//   function endGame() {
+//     clearInterval(gameInterval); // Stop creating new waste
+//     document.removeEventListener("keydown", handleKeydown); // Disable keyboard inputs
+
+//     // var gameOverlay = document.createElement('div'); // Create a new div element
+//     // gameOverlay.className = "overlay"; // Set the class name for styling
+//     // gameOverlay.textContent = "Game Over!, WASTED!!"; // Set overlay content
+//     // document.body.appendChild(gameOverlay); // Append the overlay to the body
+    
+//     alert("Game Over!, WASTED!!");
+//     location.reload(); // Reload the page to restart the game
+//   }
+    function endGame() {
+        clearInterval(gameInterval); 
+        document.removeEventListener("keydown", handleKeydown); 
+        var gameOverOverlay = document.getElementById("gameOverOverlay");
+        gameOverOverlay.style.display = "block";
+    }
 
   function handleKeydown(event) {
     if (event.key === "ArrowLeft") {
