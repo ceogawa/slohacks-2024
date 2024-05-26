@@ -6,13 +6,16 @@ document.addEventListener("DOMContentLoaded", () => {
     "compost-bin": document.getElementById("compost-bin"),
     };
 
-    let score = 0;
-    const scoreElement = document.getElementById("score-value");
-    const hearts = document.querySelectorAll(".heart");
-    let lives = hearts.length;
-    let gameInterval;
+  let score = 0;
+  let streak = 0;
+  const scoreElement = document.getElementById("score-value");
+  const streakElement = document.getElementById('streak-value');
+  const hearts = document.querySelectorAll(".heart");
+  let lives = hearts.length;
+  let gameInterval;
 
-    const binWidth = bins["trash-bin"].offsetWidth;
+   
+    const binWidth = bins['trash-bin'].offsetWidth;
     const gameWidth = game.offsetWidth;
     const moveSpeed = 10;
 
@@ -47,6 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
     });
+
 
   // Handle keyboard events
   document.addEventListener("keydown", (event) => {
@@ -148,20 +152,36 @@ document.addEventListener("DOMContentLoaded", () => {
     requestAnimationFrame(fall);
   }
 
-  function increaseScore() {
-    score++;
-    scoreElement.textContent = score; // Update the score text content
-  }
+    function increaseScore() {
+        score++;
+        scoreElement.textContent = score; // Update the score text content
+        streak++;
+        streakElement.textContent = streak; // Steak update
+    }
+
+   
+
+    function flashRed(element) {
+        const originalColor = 'rgb(142, 175, 204)'; // Original background color
+        element.style.transition = 'background-color 0.5s'; // Add transition for smooth effect
+        element.style.backgroundColor = 'red'; // Change to red
+    
+        // Change back to original color after a short delay (e.g., 500ms)
+        setTimeout(() => {
+            element.style.backgroundColor = originalColor;
+        }, 500);
+    }
 
   function loseLife() {
     if (lives > 0) {
         lives--;
         hearts[lives].style.display = 'none';
         
-        // Get the game element and flash it red
-        const gameElement = document.getElementById('game');
-        flashRed(gameElement);
-        
+                    const gameElement = document.getElementById('game');
+            flashRed(gameElement);
+            
+        streak = 0; // Reset the streak to 0
+        streakElement.textContent = streak;
         if (lives === 0) {
             endGame(); // Call endGame() if lives reach zero
         }

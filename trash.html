@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Freeman&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Waste Sorting Game</title>
@@ -10,9 +13,9 @@
             position: fixed;
             top: 20px;
             right: 20px;
-            font-size: 18px;
+            font-size: 26px;
             color: black;
-            font-family: Arial, sans-serif;
+            font-family: "Freeman", sans-serif;
         }
         
         #hearts {
@@ -57,6 +60,20 @@
             font-size: 2em;
             font-weight: bold;
             color: rgb(0, 0, 0);
+        #streak {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            font-size: 26px;
+            color: black;
+            font-family: "Freeman", sans-serif;
+            display: flex;
+            align-items: center;
+        }
+        #streak img {
+            width: 26px;
+            height: 26px;
+            margin-right: 5px;
         }
         body {
             display: flex;
@@ -104,6 +121,29 @@
                 <img src="heart.png" class="heart" alt="Heart">
                 <img src="heart.png" class="heart" alt="Heart">
                 <img src="heart.png" class="heart" alt="Heart">
+            </div>
+            <div id="streak"><img src="streak.png" alt="Streak Icon">Streak: <span id="streak-value">0</span></div>
+        </div>
+        <div id="button-container"></div>
+        <div id="myOverlay" class="overlay">
+            <div class="overlay-content">
+                    <!-- <div id="exit-button"></div> -->
+                <h2>EcoSort</h2>
+                <p>Welcome to EcoSort! Use your < and > keys to control the various bins to properly sort the falling trash.
+                <div>Landfill: chip bag </div> 
+                <div>Recycle: water bottle, glass bottle</div>
+                <div>Compost: egg shells, banana peel</div></and></p>
+            </div>
+        </div>
+        <div id="button-container"></div>
+        <div id="myOverlay" class="overlay">
+            <div class="overlay-content">
+                    <!-- <div id="exit-button"></div> -->
+                <h2>EcoSort</h2>
+                <p>Welcome to EcoSort! Use your < and > keys to control the various bins to properly sort the falling trash.
+                <div>Landfill: chip bag </div> 
+                <div>Recycle: water bottle, glass bottle</div>
+                <div>Compost: egg shells, banana peel</div></and></p>
             </div>
         </div>
         <div id="button-container"></div>
