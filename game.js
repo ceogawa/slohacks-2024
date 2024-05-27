@@ -245,16 +245,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 5000); // Adjust the timeout as needed
   }
 
-  function flashRed(element) {
-    const originalColor = "rgb(142, 175, 204)"; // Original background color
-    element.style.transition = "background-color 0.5s"; // Add transition for smooth effect
-    element.style.backgroundColor = "red"; // Change to red
+  // function flashRed(element) {
+  //   const originalColor = "rgb(142, 175, 204)"; // Original background color
+  //   element.style.transition = "background-color 0.5s"; // Add transition for smooth effect
+  //   element.style.backgroundColor = "red"; // Change to red
 
-    // Change back to original color after a short delay (e.g., 500ms)
-    setTimeout(() => {
-      element.style.backgroundColor = originalColor;
-    }, 500);
-  }
+  //   // Change back to original color after a short delay (e.g., 500ms)
+  //   setTimeout(() => {
+  //     element.style.backgroundColor = originalColor;
+  //   }, 500);
+  // }
 
   //   function endGame() {
   //     clearInterval(gameInterval); // Stop creating new waste
@@ -262,6 +262,7 @@ document.addEventListener("DOMContentLoaded", () => {
   //     alert("Game Over!, WASTED!!");
   //     location.reload(); // Reload the page to restart the game
   //   }
+  
   function endGame() {
     // no more trash, no more key input
     clearInterval(gameInterval);
